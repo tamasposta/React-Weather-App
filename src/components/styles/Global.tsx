@@ -19,8 +19,19 @@ const GlobalStyles = createGlobalStyle`
     color:white
     }
       
-    .main-container {
-    text-align: center
+    .mainContainer {
+    display:flex;
+    flex-flow: row wrap;
+    gap: 20px;
+    align-items: center;
+    justify-items: space-between;
+    min-height:100vh;
+    }
+
+    @media(max-width: ${({theme})  => theme.mobile}) {
+      .mainContainer {
+        flex-direction: column;
+      }
     }
 `
 

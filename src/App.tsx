@@ -5,13 +5,19 @@ import MoodImg from './components/MoodImg';
 import MainWeatherData from './components/MainWeatherData';
 import HourlyForecast from './components/HourlyForecast';
 import DailyForecast from './components/DailyForecast';
+//import MainContainer from './components/MainContainer';
 
 const theme = {
   colors: {
-    header: '#ebfbff',
     body: 'linear-gradient(#492BA1, #8E78C8)',
-    footer: '#003333'
+    blockbg: 'rgba(0, 0, 0, 0.1)'
   },
+
+  border: {
+    brwhite: '2px solid white;',
+    brradius: '10px'
+  },
+  
   mobile: '768px'
 }
 
@@ -20,11 +26,13 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <>
-        <GlobalStyles />
-        <MainWeatherData />
-        <MoodImg />
-        <HourlyForecast />
-        <DailyForecast />
+        <div className='mainContainer'>
+          <GlobalStyles />
+          <MainWeatherData />
+          <HourlyForecast />
+          <MoodImg />
+          <DailyForecast />
+        </div>
       </>
     </ThemeProvider>
   )
