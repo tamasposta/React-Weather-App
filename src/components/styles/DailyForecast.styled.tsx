@@ -12,8 +12,12 @@ export const StyledDailyFC = styled.div`
     #daily-forecast-table {
         display:flex;
         flex-flow: row wrap;
-        gap: 10px;
         justify-content: space-between; 
+    }
+
+    #current-date {
+        display: flex;
+        justify-content: space-between;
     }
 
     @media(max-width: ${({ theme }) => theme.mobile}) {

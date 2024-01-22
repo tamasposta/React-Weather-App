@@ -7,7 +7,7 @@ export const StyledHourlyFC = styled.div`
     border: ${({theme}) => theme.border.brwhite};
     border-radius: ${({theme}) => theme.border.brradius};
     background-color: ${({theme}) => theme.colors.blockbg};
-    height:400px;
+    height:350px;
     padding:10px;
 
     #hourly-forecast-upper {

@@ -7,11 +7,11 @@ export const StyledMainWeatherData = styled.div`
     border: ${({theme}) => theme.border.brwhite}
     width:25%;
     background-color: ${({theme}) => theme.colors.blockbg};
-    height: 400px;
+    height: 350px;
     align-items: center;
 
     img {
-        width:200px;
+        width:150px;
     }
 
     @media(max-width: ${({theme})  => theme.mobile}) {

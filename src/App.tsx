@@ -5,7 +5,6 @@ import MoodImg from './components/MoodImg';
 import MainWeatherData from './components/MainWeatherData';
 import HourlyForecast from './components/HourlyForecast';
 import DailyForecast from './components/DailyForecast';
-//import MainContainer from './components/MainContainer';
 
 const theme = {
   colors: {
@@ -18,7 +17,7 @@ const theme = {
     brradius: '10px'
   },
   
-  mobile: '768px'
+  mobile: '1024px'
 }
 
 function App() {
@@ -29,9 +28,9 @@ function App() {
         <div className='mainContainer'>
           <GlobalStyles />
           <MainWeatherData />
-          <HourlyForecast />
-          <MoodImg />
           <DailyForecast />
+          {/* <HourlyForecast /> */}
+          <MoodImg />
         </div>
       </>
     </ThemeProvider>
@@ -39,23 +38,3 @@ function App() {
 }
 
 export default App
-
-
-  // const { data, isLoading, errorMessage } = useOpenWeather({
-  //   key: '955163c3dd7ea09295465a4fff838911',
-  //   lat: '47.315999',
-  //   lon: '21.355999',
-  //   lang: 'en',
-  //   unit: 'metric', // values are (metric, standard, imperial)
-  // });
-  // return (
-  //   <ReactWeather
-  //     isLoading={isLoading}
-  //     errorMessage={errorMessage}
-  //     data={data}
-  //     lang="en"
-  //     locationLabel="Debrecen"
-  //     unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
-  //     showForecast
-  //   />
-  // );

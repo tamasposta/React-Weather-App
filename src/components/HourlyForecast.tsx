@@ -1,16 +1,29 @@
 import { StyledHourlyFC } from "./styles/HourlyForecast.styled"
+import { useState } from "react";
+
+const getDate = () => {
+  const today = new Date();
+  const monthNames = ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Oktober", "November", "December"];
+  const monthIndex = today.getMonth();
+  const monthName = monthNames[monthIndex];
+  const year = today.getFullYear();
+  const date = today.getDate();
+  return `${year}.${monthName}.${date}`;
+}
 
 export default function HourlyForecast() {
+  const [currentDate] = useState(getDate());
+
   return (
     <StyledHourlyFC>
-      <div id="hourly-forecast-upper">
+      <div id="current-date">
         <p>Ma</p>
-        <p className="actual-date">January, 01.</p>
+        <p className="actual-date">{currentDate}</p>
       </div>
       <div id="hourly-forecast-lower">
         <div className="hourly-forecast-lower-column">
           <div className="hourly-data">
-            <p className="hourly-degree">5°C</p>
+            <p className="hourly-degree">8°C</p>
             <img src="src/images/moon-cloud-mid-rain.png" alt="" className="hourly-weather-img" />
             <p className="actual-hour">00:00</p>
           </div>
