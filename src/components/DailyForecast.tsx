@@ -44,7 +44,7 @@ const getDate = () => {
         </>
       ) 
       : (
-        <p>Adatok betöltés alatt...</p>
+        <p>Adatok betöltés alatt!</p>
       )}
     </div>
     <div id="current-date">
