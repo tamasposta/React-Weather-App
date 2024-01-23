@@ -43,9 +43,10 @@ const MainWeatherData = () => {
     fetchData();
   };
 
-  const iconUrl = `https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`;                  
+  //const iconUrl = `https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`;                  
+  const iconUrl = `./src/images/icons/${weatherData?.weather?.[0]?.icon}.svg`;                  
 
-  console.log(weatherData, 'MainWeatherData')
+ // console.log(weatherData, 'MainWeatherData')
 
   return (
     <StyledMainWeatherData>

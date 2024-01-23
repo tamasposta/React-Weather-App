@@ -4,9 +4,9 @@ import App from './App.tsx'
 import { LocationProvider } from './context/LocationContext.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <LocationProvider>
+  // <LocationProvider>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </LocationProvider>,
+  // </LocationProvider>,
 )

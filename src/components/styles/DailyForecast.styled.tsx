@@ -12,7 +12,11 @@ export const StyledDailyFC = styled.div`
     #daily-forecast-table {
         display:flex;
         flex-flow: row wrap;
-        justify-content: space-between; 
+        justify-content: space-around; 
+    }
+
+    .daily-forecast-table-element {
+        min-width:200px;
     }
 
     #current-date {
@@ -26,7 +30,21 @@ export const StyledDailyFC = styled.div`
 
     .windDiv {
         display:flex;
-        flex-direction: row
+        flex-direction: row;
+        justify-content: center
+    }
+
+    img {
+        max-height:50px;
+    }
+
+    .daily-forecast-date {
+        border: 1px solid white;
+        border-radius:7px;
+        padding:5px;
+        background: rgba(255, 255, 255, 0.2);
+        color:white;
+        width:100%;
     }
 
     @media(max-width: ${({ theme }) => theme.mobile}) {
@@ -44,6 +62,10 @@ export const StyledDailyFC = styled.div`
             justify-content: center;
             border-bottom: 1px solid white;
             align-items: center
+        }
+
+        .daily-forecast-table-element:last-child {
+            border-bottom: none
         }
 
         .daily-forecast-img {

@@ -27,7 +27,7 @@ const DailyForecast: React.FC = () => {
           `https://api.openweathermap.org/data/2.5/forecast?q=Debrecen&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
         );
       setForecastData(response.data);
-      console.log(response.data, 'Daily Forecast API Data');
+      // console.log(response.data, 'Daily Forecast API Data');
     } catch (error) {
       console.error(error);
     }
@@ -51,7 +51,8 @@ const DailyForecast: React.FC = () => {
               <div id="daily-forecast-table">
                 {/* ? ez azért kell, mert ha list nem létezik, akkor hibát kapunk */}
                 {forecastData?.list.map((listItem: any, index: any) => {
-                  const iconUrl = `https://openweathermap.org/img/wn/${listItem?.weather?.[0]?.icon}@2x.png`;                  
+                  //const iconUrl = `https://openweathermap.org/img/wn/${listItem?.weather?.[0]?.icon}@2x.png`;                  
+                  const iconUrl = `./src/images/icons/${listItem?.weather?.[0]?.icon}.svg`;                  
                   if ((index + 1) % 8 === 0) {
                     return (
                     <div className="daily-forecast-table-element">
