@@ -7,7 +7,7 @@ export const StyledMainWeatherData = styled.div`
     border: ${({theme}) => theme.border.brwhite}
     width:25%;
     background-color: ${({theme}) => theme.colors.blockbg};
-    height: 350px;
+    min-height: 465px;
     align-items: center;
 
     img {

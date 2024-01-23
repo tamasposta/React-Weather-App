@@ -8,7 +8,9 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: ${({theme}) => theme.colors.body};
+        background-image: url("./src/images/darkmoon.jpg");
+        background-size: cover;
+        background-position: center;
         padding:10px;
         text-align: center;
         display:block;
@@ -25,12 +27,17 @@ const GlobalStyles = createGlobalStyle`
     gap: 20px;
     align-items: center;
     justify-items: space-between;
-    min-height:100vh;
+    min-height:90vh;
     }
 
     @media(max-width: ${({theme})  => theme.mobile}) {
       .mainContainer {
         flex-direction: column;
+      }
+
+      body {
+        background-image: url("./src/images/darkmoon-mobile.jpg");
+        background-position:left;
       }
     }
 `

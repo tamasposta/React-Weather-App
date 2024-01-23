@@ -8,8 +8,8 @@ import DailyForecast from './components/DailyForecast';
 
 const theme = {
   colors: {
-    body: 'linear-gradient(#492BA1, #8E78C8)',
-    blockbg: 'rgba(0, 0, 0, 0.1)'
+    body: 'linear-gradient(#2dd6fc, #4342ca)',
+    blockbg: 'rgba(30, 50, 150, 0.6)'
   },
 
   border: {
@@ -29,8 +29,8 @@ function App() {
           <GlobalStyles />
           <MainWeatherData />
           <DailyForecast />
-          {/* <HourlyForecast /> */}
-          <MoodImg />
+          {/* <HourlyForecast /> 
+          <MoodImg />*/}
         </div>
       </>
     </ThemeProvider>

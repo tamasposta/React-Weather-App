@@ -43,6 +43,9 @@ const MainWeatherData = () => {
     fetchData();
   };
 
+  const iconUrl = `https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`;                  
+
+  console.log(weatherData, 'MainWeatherData')
 
   return (
     <StyledMainWeatherData>
@@ -59,10 +62,12 @@ const MainWeatherData = () => {
       {weatherData 
       ? (
         <>
-          <img src="src/images/sun+rain.png" alt="" className="actual-weather-img" />
+          <img src={iconUrl} alt="" className="actual-weather-img" />
           <h1 className="location">{weatherData.name}</h1>
           <h3> {Math.round(weatherData.main.temp)}°C</h3>
           <p>Leírás: {weatherData.weather[0].description}</p>
+          <p>Hőérzet: {weatherData.main.feels_like}°C</p>
+          <p>Páratartalom: {weatherData.main.humidity}</p>
           <p>Szél: {Math.round(weatherData.wind.speed)} m/s</p>
           {/* <p>Hőérzet: {weatherData.main.feels_like}°C</p>
           <p>Szél: {weatherData.wind.speed} m/s</p>
