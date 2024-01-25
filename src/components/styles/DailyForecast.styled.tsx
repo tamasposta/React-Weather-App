@@ -39,7 +39,7 @@ export const StyledDailyFC = styled.div`
     }
 
     .daily-forecast-date {
-        border: 1px solid white;
+        border: 2px solid white;
         border-radius:7px;
         padding:5px;
         background: rgba(255, 255, 255, 0.2);

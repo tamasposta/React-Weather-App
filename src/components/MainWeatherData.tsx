@@ -1,6 +1,7 @@
 import { StyledMainWeatherData } from "./styles/MainWeatherData.styled"
 import axios from "axios"
 import { useEffect, useState } from "react";
+import { useGeocoding } from "../context/GeocodingContext";
 
 // export default function MainWeatherData() {
 //   return (
@@ -16,6 +17,12 @@ import { useEffect, useState } from "react";
 const MainWeatherData = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+
+  const { location } = useGeocoding();
+  // Itt használd a location objektumot a latitude és longitude értékek eléréséhez
+  const latitude = location?.latitude;
+  const longitude = location?.longitude;
+  console.log('latitude:', latitude, 'longitude:', longitude)
 
   const fetchData = async () => {
     try {
@@ -66,13 +73,10 @@ const MainWeatherData = () => {
           <img src={iconUrl} alt="" className="actual-weather-img" />
           <h1 className="location">{weatherData.name}</h1>
           <h3> {Math.round(weatherData.main.temp)}°C</h3>
-          <p>Leírás: {weatherData.weather[0].description}</p>
+          <p>Leírás: {weatherData.weather[0].description} </p>
           <p>Hőérzet: {weatherData.main.feels_like}°C</p>
           <p>Páratartalom: {weatherData.main.humidity}</p>
           <p>Szél: {Math.round(weatherData.wind.speed)} m/s</p>
-          {/* <p>Hőérzet: {weatherData.main.feels_like}°C</p>
-          <p>Szél: {weatherData.wind.speed} m/s</p>
-          <p>Páratartalom : {weatherData.main.humidity}%</p> */}
         </>
       ) 
       : (
@@ -84,5 +88,3 @@ const MainWeatherData = () => {
 };
 
 export default MainWeatherData;
-
-// Feladat: Block formátumban megjeleníteni az img-et dinamikusan, a helyzetet, a hőmérsékletet és a min-max hőmérsékletet

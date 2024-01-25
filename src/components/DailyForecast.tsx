@@ -1,6 +1,7 @@
 import { StyledDailyFC } from "./styles/DailyForecast.styled"
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useGeocoding } from "../context/GeocodingContext";
 
 const getDate = () => {
   // visszatérési érték egy típus
@@ -10,7 +11,7 @@ const getDate = () => {
   const monthName = monthNames[monthIndex];
   const year = today.getFullYear();
   const date = today.getDate();
-  return `${year}.${monthName}.${date}`;
+  return `${year}. ${monthName}. ${date}`;
 }
 
 const DailyForecast: React.FC = () => {
