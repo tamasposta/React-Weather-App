@@ -8,6 +8,8 @@ export const StyledDailyFC = styled.div`
     background-color: ${({ theme }) => theme.colors.blockbg};
     padding:10px;
     width:72.5%;
+    min-height: 500px;
+
 
     #daily-forecast-table {
         display:flex;
@@ -39,10 +41,10 @@ export const StyledDailyFC = styled.div`
     }
 
     .daily-forecast-date {
-        border: 2px solid white;
-        border-radius:7px;
+        border: ${({theme}) => theme.border.brwhite};
+        border-radius: ${({theme}) => theme.border.brradius};
         padding:5px;
-        background: rgba(255, 255, 255, 0.2);
+        background: ${({theme}) => theme.colors.whitetp};
         color:white;
         width:100%;
     }

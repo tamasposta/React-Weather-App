@@ -3,17 +3,16 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import useGeolocation from "../hooks/useGeolocation";
 
-const MainWeatherData = () => {
-  //const [city, setCity] = useState('');
+const MainWeatherData = ({ city, setCity }) => {
   const location = useGeolocation();
   const [weatherData, setWeatherData] = useState(null);
   
   const fetchData = async () => {
     try {
       const response = await axios.get(
-       // `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
-       // `https://api.openweathermap.org/data/2.5/weather?q=Debrecen&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
-        `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates.lat}&lon=${location.coordinates.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
+       city
+        ? `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
+        : `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates.lat}&lon=${location.coordinates.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
       );
       setWeatherData(response.data);
     } catch (error) {
@@ -23,31 +22,23 @@ const MainWeatherData = () => {
 
   useEffect(() => {
     fetchData();
-  }, [location]);
+  }, [location, city]);
+// useEffect-nél a []-n belül lehet megadni dependenciát, ami azt jelenti, hogy ha az változik, akkor az előző függvényt újra lefuttatja
 
-  // const handleInputChange = (e: any) => {
-  //   setCity(e.target.value);
-  // };
+  const handleInputChange = (e: any) => {
+    setCity(e.target.value);
+  };
 
-  // const handleSubmit = (e: any) => {
-  //   e.preventDefault();
-  //   fetchData();
-  // };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    fetchData();
+  };
 
   const iconUrl = `./src/images/icons/${weatherData?.weather?.[0]?.icon}.svg`;                  
 
   return (
     <StyledMainWeatherData>
     <div>
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter city name"
-          value={city}
-          onChange={handleInputChange}
-        />
-        <button type="submit">Get Weather</button>
-      </form> */}
       {weatherData 
       ? (
         <>
@@ -63,6 +54,15 @@ const MainWeatherData = () => {
       : (
         <p>Adatok betöltés alatt...</p>
       )}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Írd be a város nevét..."
+          value={city}
+          onChange={handleInputChange}
+        />
+        <button type="submit">🔍 KERESÉS</button>
+      </form>
     </div>
     </StyledMainWeatherData>
   );

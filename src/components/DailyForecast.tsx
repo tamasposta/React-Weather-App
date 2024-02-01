@@ -13,7 +13,7 @@ const getDate = (): string => {
   return `${year}. ${monthName}. ${date}`;
 }
 
-const DailyForecast: React.FC = () => {
+const DailyForecast: React.FC = ({ city }) => {
   const location = useGeolocation();
   const [forecastData, setForecastData] = useState<null | any>(null);
   // Házi ForecastDataType elkészítése
@@ -24,11 +24,11 @@ const DailyForecast: React.FC = () => {
       const response = await axios.get<any>
         // ide is ForecastDataType
         (
-          // `https://api.openweathermap.org/data/2.5/forecast?q=Debrecen&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coordinates.lat}&lon=${location.coordinates.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
+        city
+          ? `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
+          : `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coordinates.lat}&lon=${location.coordinates.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
         );
       setForecastData(response.data);
-      // console.log(response.data, 'Daily Forecast API Data');
     } catch (error) {
       console.error(error);
     }
@@ -36,7 +36,7 @@ const DailyForecast: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, [location]);
+  }, [location, city]);
 
   return (
     <StyledDailyFC>

@@ -28,7 +28,7 @@ const GlobalStyles = createGlobalStyle`
     flex-flow: row wrap;
     gap: 20px;
     align-items: center;
-    justify-items: space-between;
+    justify-content: space-between;
     min-height:90vh;
     }
 
