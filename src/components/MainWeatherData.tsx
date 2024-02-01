@@ -1,29 +1,16 @@
 import { StyledMainWeatherData } from "./styles/MainWeatherData.styled"
 import axios from "axios"
 import { useEffect, useState } from "react";
-import { useGeocoding } from "../context/GeocodingContext";
-
-// export default function MainWeatherData() {
-//   return (
-//     <StyledMainWeatherData>
-//           <img src="src/images/sun+rain.png" alt="" className="actual-weather-img" />
-//           <h1 className="location">Debrecen</h1>
-//           <h3 className="actual-degree">5°C</h3>
-//           <p className="max-min-degree">Max: 8°C | Min: 1°C</p>
-//     </StyledMainWeatherData>
-//   )
-// }
 
 const MainWeatherData = () => {
   const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
 
-  const { location } = useGeocoding();
-  // Itt használd a location objektumot a latitude és longitude értékek eléréséhez
-  const latitude = location?.latitude;
-  const longitude = location?.longitude;
-  console.log('latitude:', latitude, 'longitude:', longitude)
-
+  // const { location } = useGeocoding();
+  // // Itt használd a location objektumot a latitude és longitude értékek eléréséhez
+  // const latitude = location?.latitude;
+  // const longitude = location?.longitude;
+  
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -50,7 +37,6 @@ const MainWeatherData = () => {
     fetchData();
   };
 
-  //const iconUrl = `https://openweathermap.org/img/wn/${weatherData?.weather?.[0]?.icon}@2x.png`;                  
   const iconUrl = `./src/images/icons/${weatherData?.weather?.[0]?.icon}.svg`;                  
 
  // console.log(weatherData, 'MainWeatherData')
