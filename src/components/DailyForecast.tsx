@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useGeolocation from "../hooks/useGeolocation";
 
-const getDate = () => {
-  // visszatérési érték egy típus
+const getDate = (): string => {
   const today = new Date();
   const monthNames = ["Január", "Február", "Március", "Április", "Május", "Június", "Július", "Augusztus", "Szeptember", "Oktober", "November", "December"];
   const monthIndex = today.getMonth();
@@ -14,31 +13,11 @@ const getDate = () => {
   return `${year}. ${monthName}. ${date}`;
 }
 
-// const x = document.getElementById("demo");
-
-// useEffect(() => {
-//   const getLocation = () => {
-//     navigator.geolocation
-//       ? navigator.geolocation.getCurrentPosition(showPosition)
-//       : x.innerHTML = "Geolocation is not supported by this browser.";
-//   }
-
-//   const showPosition = (position) => {
-//     x.innerHTML = "Latitude: " + position.coords.latitude +
-//       "<br>Longitude: " + position.coords.longitude;
-//     console.log(position.coords.longitude)
-//   }
-
-// })
-
 const DailyForecast: React.FC = () => {
+  const location = useGeolocation();
   const [forecastData, setForecastData] = useState<null | any>(null);
   // Házi ForecastDataType elkészítése
   const [currentDate] = useState<string>(getDate());
-  // const [location, showPosition] = useState(getLocation())
-  const location = useGeolocation();
-
-  //console.log(location.coordinates?.long)
 
   const fetchData = async (): Promise<void> => {
     try {
@@ -57,7 +36,7 @@ const DailyForecast: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [location]);
 
   return (
     <StyledDailyFC>

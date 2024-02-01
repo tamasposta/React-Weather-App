@@ -1,24 +1,21 @@
 import { StyledMainWeatherData } from "./styles/MainWeatherData.styled"
 import axios from "axios"
 import { useEffect, useState } from "react";
+import useGeolocation from "../hooks/useGeolocation";
 
 const MainWeatherData = () => {
-  const [city, setCity] = useState('');
+  //const [city, setCity] = useState('');
+  const location = useGeolocation();
   const [weatherData, setWeatherData] = useState(null);
-
-  // const { location } = useGeocoding();
-  // // Itt használd a location objektumot a latitude és longitude értékek eléréséhez
-  // const latitude = location?.latitude;
-  // const longitude = location?.longitude;
   
   const fetchData = async () => {
     try {
       const response = await axios.get(
        // `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
-        `https://api.openweathermap.org/data/2.5/weather?q=Debrecen&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
+       // `https://api.openweathermap.org/data/2.5/weather?q=Debrecen&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates.lat}&lon=${location.coordinates.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
       );
       setWeatherData(response.data);
-      //console.log(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -26,20 +23,18 @@ const MainWeatherData = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [location]);
 
-  const handleInputChange = (e: any) => {
-    setCity(e.target.value);
-  };
+  // const handleInputChange = (e: any) => {
+  //   setCity(e.target.value);
+  // };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    fetchData();
-  };
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   fetchData();
+  // };
 
   const iconUrl = `./src/images/icons/${weatherData?.weather?.[0]?.icon}.svg`;                  
-
- // console.log(weatherData, 'MainWeatherData')
 
   return (
     <StyledMainWeatherData>
