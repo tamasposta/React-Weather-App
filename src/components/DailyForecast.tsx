@@ -42,7 +42,7 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
         (
         city
           ? `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
-          : `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coordinates.lat}&lon=${location.coordinates.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
+          : `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coordinates?.lat}&lon=${location.coordinates?.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
         );
       setForecastData(response.data);
     } catch (error) {
