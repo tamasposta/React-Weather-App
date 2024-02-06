@@ -1,15 +1,35 @@
 import { StyledMainWeatherData } from "./styles/MainWeatherData.styled"
-import axios from "axios"
-import { useEffect, useState } from "react";
-import useGeolocation from "../hooks/useGeolocation";
+import axios, { AxiosResponse } from "axios"
+import { useEffect, useState, ChangeEvent, FormEvent } from "react"
+import useGeolocation, { Coordinates } from "../hooks/useGeolocation"
+interface WeatherData {
+  name: string;
+  main: {
+    temp: number;
+    feels_like: number;
+    humidity: number;
+  };
+  weather: {
+    description: string;
+    icon: string;
+  }[];
+  wind: {
+    speed: number;
+  };
+}
 
-const MainWeatherData = ({ city, setCity }) => {
-  const location = useGeolocation();
-  const [weatherData, setWeatherData] = useState(null);
+interface MainWeatherDataProps {
+  city: string;
+  setCity: (city: string) => void;
+}
+
+const MainWeatherData: React.FC<MainWeatherDataProps> = ({ city, setCity }) => {
+  const location: { coordinates?: Coordinates }  = useGeolocation();
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   
   const fetchData = async () => {
     try {
-      const response = await axios.get(
+      const response: AxiosResponse<WeatherData> = await axios.get(
        city
         ? `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
         : `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates.lat}&lon=${location.coordinates.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
@@ -23,14 +43,13 @@ const MainWeatherData = ({ city, setCity }) => {
   useEffect(() => {
     fetchData();
   }, [location, city]);
-// useEffect-nél a []-n belül lehet megadni dependenciát, ami azt jelenti, hogy ha az változik, akkor az előző függvényt újra lefuttatja
 
-  const handleInputChange = (e: any) => {
-    setCity(e.target.value);
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setCity(event.target.value);
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     fetchData();
   };
 

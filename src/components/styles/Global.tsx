@@ -33,13 +33,17 @@ const GlobalStyles = createGlobalStyle`
     }
 
     @media(max-width: ${({theme})  => theme.mobile}) {
+      body {
+        padding:5px;
+      }
+      
       .mainContainer {
         flex-direction: column;
       }
 
       body {
-        background-image: url("./src/images/darkmoon-mobile.jpg");
-        background-position:left;
+        background: #110630 url("./src/images/darkmoon-mobile.jpg") no-repeat left top;
+        background-size:100%;
       }
     }
 `
