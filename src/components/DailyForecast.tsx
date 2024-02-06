@@ -1,7 +1,25 @@
 import { StyledDailyFC } from "./styles/DailyForecast.styled"
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import useGeolocation from "../hooks/useGeolocation";
+import axios, { AxiosResponse } from "axios";
+import useGeolocation, { Coordinates } from "../hooks/useGeolocation";
+
+interface ForecastItem {
+  dt_txt: string;
+  main: {
+    temp_max: number;
+  };
+  weather: {
+    icon: string;
+    description: string;
+  }[];
+  wind: {
+    speed: number;
+  };
+}
+
+interface ForecastData {
+  list: ForecastItem[];
+}
 
 const getDate = (): string => {
   const today = new Date();
@@ -13,16 +31,14 @@ const getDate = (): string => {
   return `${year}. ${monthName}. ${date}`;
 }
 
-const DailyForecast: React.FC = ({ city }) => {
-  const location = useGeolocation();
-  const [forecastData, setForecastData] = useState<null | any>(null);
-  // Házi ForecastDataType elkészítése
+const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
+  const location: { coordinates?: Coordinates } = useGeolocation();
+  const [forecastData, setForecastData] = useState<ForecastData | any>(null);
   const [currentDate] = useState<string>(getDate());
 
   const fetchData = async (): Promise<void> => {
     try {
-      const response = await axios.get<any>
-        // ide is ForecastDataType
+      const response: AxiosResponse<ForecastData> = await axios.get<any>
         (
         city
           ? `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
@@ -50,9 +66,7 @@ const DailyForecast: React.FC = ({ city }) => {
               </div>
               <h2>5 napos előrejelzés</h2>
               <div id="daily-forecast-table">
-                {/* ? ez azért kell, mert ha list nem létezik, akkor hibát kapunk */}
-                {forecastData?.list.map((listItem: any, index: any) => {
-                  //const iconUrl = `https://openweathermap.org/img/wn/${listItem?.weather?.[0]?.icon}@2x.png`;                  
+                {forecastData?.list.map((listItem: ForecastItem, index: number) => {
                   const iconUrl = `./src/images/icons/${listItem?.weather?.[0]?.icon}.svg`;
                   if ((index + 1) % 8 === 0) {
                     return (
@@ -66,6 +80,7 @@ const DailyForecast: React.FC = ({ city }) => {
                       </div>
                     )
                   }
+                  return null
                 })}
               </div>
             </>

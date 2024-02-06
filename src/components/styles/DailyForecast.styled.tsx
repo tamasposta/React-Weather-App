@@ -24,6 +24,8 @@ export const StyledDailyFC = styled.div`
     #current-date {
         display: flex;
         justify-content: space-between;
+        padding: 0 10px;
+        border-bottom: 1px solid white;
     }
 
     .windImg {
@@ -55,7 +57,7 @@ export const StyledDailyFC = styled.div`
         #daily-forecast-table {
             display:flex;
             flex-flow: column wrap;
-            gap:0px
+            gap:10px
         }
 
         .daily-forecast-table-element {
@@ -78,6 +80,11 @@ export const StyledDailyFC = styled.div`
         .windImg {
             width:50px;
             padding-right:10px
+        }
+
+        #current-date {
+            padding: 0;
+            border-bottom: ${({theme}) => theme.border.brwhite}
         }
     }
 `

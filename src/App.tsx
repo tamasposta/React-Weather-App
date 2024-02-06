@@ -4,7 +4,20 @@ import GlobalStyles from "./components/styles/Global"
 import MainWeatherData from './components/MainWeatherData';
 import DailyForecast from './components/DailyForecast';
 
-const theme = {
+type Theme = {
+  colors: {
+    body: string;
+    blockbg: string;
+    whitetp: string;
+  };
+  border: {
+    brwhite: string;
+    brradius: string;
+  };
+  mobile: string;
+}
+
+const theme: Theme = {
   colors: {
     body: 'linear-gradient(#2dd6fc, #4342ca)',
     blockbg: 'rgba(30, 50, 150, 0.6)',

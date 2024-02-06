@@ -9,7 +9,11 @@ export const StyledMainWeatherData = styled.div`
     background-color: ${({ theme }) => theme.colors.blockbg};
     min-height: 500px;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 10px;
+
+    div {
+        width: 100%
+    }
 
     img {
         width:100px;
@@ -34,6 +38,7 @@ export const StyledMainWeatherData = styled.div`
     form input:focus-visible {
         background: ${({ theme }) => theme.colors.blockbg};
         outline: none;
+        text-align:center;
     }
 
     button {
@@ -57,6 +62,7 @@ export const StyledMainWeatherData = styled.div`
     }
 
     @media(max-width: ${({ theme }) => theme.mobile}) {
-        width: 100%
+        width: 100%;
+        padding: 20px 0;
       }
 `
