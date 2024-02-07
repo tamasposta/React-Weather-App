@@ -67,7 +67,7 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
               <h2>5 napos előrejelzés</h2>
               <div id="daily-forecast-table">
                 {forecastData?.list.map((listItem: ForecastItem, index: number) => {
-                  const iconUrl = `src/images/icons/${listItem?.weather?.[0]?.icon}.svg`;
+                  const iconUrl = `/src/images/icons/${listItem?.weather?.[0]?.icon}.svg`;
                   if ((index + 1) % 8 === 0) {
                     return (
                       <div className="daily-forecast-table-element">
