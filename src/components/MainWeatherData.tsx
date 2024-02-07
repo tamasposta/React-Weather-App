@@ -53,7 +53,7 @@ const MainWeatherData: React.FC<MainWeatherDataProps> = ({ city, setCity }) => {
     fetchData();
   };
 
-  const iconUrl = `./src/images/icons/${weatherData?.weather?.[0]?.icon}.svg`;                  
+  const iconUrl = `src/images/icons/${weatherData?.weather?.[0]?.icon}.svg`;                  
 
   return (
     <StyledMainWeatherData>
