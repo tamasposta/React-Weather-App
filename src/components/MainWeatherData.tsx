@@ -2,6 +2,7 @@ import { StyledMainWeatherData } from "./styles/MainWeatherData.styled"
 import axios, { AxiosResponse } from "axios"
 import { useEffect, useState, ChangeEvent, FormEvent } from "react"
 import useGeolocation, { Coordinates } from "../hooks/useGeolocation"
+//import getIcon from "../getIcon"
 interface WeatherData {
   name: string;
   main: {
@@ -23,9 +24,10 @@ interface MainWeatherDataProps {
   setCity: (city: string) => void;
 }
 
-const MainWeatherData: React.FC<MainWeatherDataProps> = ({ city, setCity }) => {
+const MainWeatherData =  ({ city, setCity }:MainWeatherDataProps) => {
   const location: { coordinates?: Coordinates }  = useGeolocation();
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  //const [weatherIcon, setWeatherIcon] = useState<string>("")
   
   const fetchData = async () => {
     try {
@@ -35,6 +37,7 @@ const MainWeatherData: React.FC<MainWeatherDataProps> = ({ city, setCity }) => {
         : `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates?.lat}&lon=${location.coordinates?.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
       );
       setWeatherData(response.data);
+      //setWeatherIcon (getIcon(weatherData?.weather?.[0]?.icon))
     } catch (error) {
       console.error(error);
     }
@@ -53,7 +56,11 @@ const MainWeatherData: React.FC<MainWeatherDataProps> = ({ city, setCity }) => {
     fetchData();
   };
 
-  const iconUrl = `/src/images/icons/${weatherData?.weather?.[0]?.icon}.svg`;                  
+ const iconUrl = `./images/icons/${weatherData?.weather?.[0]?.icon}.svg`                  
+  // const iconUrlPromise = import(`../images/icons/02d.svg`); 
+  // iconUrlPromise.then(iconUrl => {
+  //   return <div></div>
+  // })                 
 
   return (
     <StyledMainWeatherData>
@@ -61,7 +68,7 @@ const MainWeatherData: React.FC<MainWeatherDataProps> = ({ city, setCity }) => {
       {weatherData 
       ? (
         <>
-          <img src={iconUrl} alt="" className="actual-weather-img" />
+          <img src={iconUrl} alt="mainWeatherImg" className="actual-weather-img" />
           <h1 className="location">{weatherData.name}</h1>
           <h3> {Math.round(weatherData.main.temp)}°C</h3>
           <p>Leírás: {weatherData.weather[0].description} </p>

@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background-image: url("./src/images/darkmoon.jpg");
+        background-image: url("./images/darkmoon.jpg");
         background-size: cover;
         background-position: center;
         padding:10px;
@@ -42,7 +42,7 @@ const GlobalStyles = createGlobalStyle`
       }
 
       body {
-        background: #110630 url("./src/images/darkmoon-mobile.jpg") no-repeat left top;
+        background: #110630 url("./images/darkmoon-mobile.jpg") no-repeat left top;
         background-size:100%;
       }
     }
