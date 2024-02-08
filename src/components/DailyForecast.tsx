@@ -2,6 +2,7 @@ import { StyledDailyFC } from "./styles/DailyForecast.styled"
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import useGeolocation, { Coordinates } from "../hooks/useGeolocation";
+//import getIcon from "../getIcon";
 
 interface ForecastItem {
   dt_txt: string;
@@ -35,6 +36,7 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
   const location: { coordinates?: Coordinates } = useGeolocation();
   const [forecastData, setForecastData] = useState<ForecastData | any>(null);
   const [currentDate] = useState<string>(getDate());
+  //const [weatherIcon, setWeatherIcon] = useState<string>("")
 
   const fetchData = async (): Promise<void> => {
     try {
@@ -45,6 +47,7 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
           : `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coordinates?.lat}&lon=${location.coordinates?.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
         );
       setForecastData(response.data);
+     // setWeatherIcon (getIcon(forecastData?.listItem?.weather?.[0]?.icon))
     } catch (error) {
       console.error(error);
     }
@@ -67,7 +70,7 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
               <h2>5 napos előrejelzés</h2>
               <div id="daily-forecast-table">
                 {forecastData?.list.map((listItem: ForecastItem, index: number) => {
-                  const iconUrl = `/src/images/icons/${listItem?.weather?.[0]?.icon}.svg`;
+                  const iconUrl = `./images/icons/${listItem?.weather?.[0]?.icon}.svg`;
                   if ((index + 1) % 8 === 0) {
                     return (
                       <div className="daily-forecast-table-element">
@@ -75,7 +78,7 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
                         <img src={iconUrl} alt="weatherIcon" className="daily-forecast-img" />
                         <h3 className="daily-forecast-upper-degree">{Math.round(listItem?.main?.temp_max)}°C</h3>
                         <h4 className="daily-forecast-lower-degree">{listItem?.weather?.[0]?.description}</h4>
-                        <div className="windDiv"><img src="src/images/wind.svg" alt="szél" className="windImg" /> <h4 className="daily-forecast-lower-degree"> &nbsp; {Math.round(listItem?.wind?.speed)} km/h</h4>
+                        <div className="windDiv"><img src="./src/images/wind.svg" alt="szél" className="windImg" /> <h4 className="daily-forecast-lower-degree"> &nbsp; {Math.round(listItem?.wind?.speed)} km/h</h4>
                         </div>
                       </div>
                     )
