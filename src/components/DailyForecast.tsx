@@ -2,8 +2,6 @@ import { StyledDailyFC } from "./styles/DailyForecast.styled"
 import React, { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import useGeolocation, { Coordinates } from "../hooks/useGeolocation";
-//import getIcon from "../getIcon";
-
 interface ForecastItem {
   dt_txt: string;
   main: {
@@ -36,7 +34,6 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
   const location: { coordinates?: Coordinates } = useGeolocation();
   const [forecastData, setForecastData] = useState<ForecastData | null>(null);
   const [currentDate] = useState<string>(getDate());
-  //const [weatherIcon, setWeatherIcon] = useState<string>("")
 
   const fetchData = async (): Promise<void> => {
     try {
@@ -47,7 +44,6 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
           : `https://api.openweathermap.org/data/2.5/forecast?lat=${location.coordinates?.lat}&lon=${location.coordinates?.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
         );
       setForecastData(response.data);
-     // setWeatherIcon (getIcon(forecastData?.listItem?.weather?.[0]?.icon))
     } catch (error) {
       console.error(error);
     }

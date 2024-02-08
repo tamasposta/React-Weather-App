@@ -2,7 +2,6 @@ import { StyledMainWeatherData } from "./styles/MainWeatherData.styled"
 import axios, { AxiosResponse } from "axios"
 import { useEffect, useState, ChangeEvent, FormEvent } from "react"
 import useGeolocation, { Coordinates } from "../hooks/useGeolocation"
-//import getIcon from "../getIcon"
 interface WeatherData {
   name: string;
   main: {
@@ -27,7 +26,6 @@ interface MainWeatherDataProps {
 const MainWeatherData =  ({ city, setCity }:MainWeatherDataProps) => {
   const location: { coordinates?: Coordinates }  = useGeolocation();
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-  //const [weatherIcon, setWeatherIcon] = useState<string>("")
   
   const fetchData = async () => {
     try {
@@ -37,7 +35,6 @@ const MainWeatherData =  ({ city, setCity }:MainWeatherDataProps) => {
         : `https://api.openweathermap.org/data/2.5/weather?lat=${location.coordinates?.lat}&lon=${location.coordinates?.long}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
       );
       setWeatherData(response.data);
-      //setWeatherIcon (getIcon(weatherData?.weather?.[0]?.icon))
     } catch (error) {
       console.error(error);
     }
@@ -56,11 +53,7 @@ const MainWeatherData =  ({ city, setCity }:MainWeatherDataProps) => {
     fetchData();
   };
 
- const iconUrl = `./images/icons/${weatherData?.weather?.[0]?.icon}.svg`                  
-  // const iconUrlPromise = import(`../images/icons/02d.svg`); 
-  // iconUrlPromise.then(iconUrl => {
-  //   return <div></div>
-  // })                 
+ const iconUrl = `./images/icons/${weatherData?.weather?.[0]?.icon}.svg`                                 
 
   return (
     <StyledMainWeatherData>
