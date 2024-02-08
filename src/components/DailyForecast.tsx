@@ -34,13 +34,13 @@ const getDate = (): string => {
 
 const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
   const location: { coordinates?: Coordinates } = useGeolocation();
-  const [forecastData, setForecastData] = useState<ForecastData | any>(null);
+  const [forecastData, setForecastData] = useState<ForecastData | null>(null);
   const [currentDate] = useState<string>(getDate());
   //const [weatherIcon, setWeatherIcon] = useState<string>("")
 
   const fetchData = async (): Promise<void> => {
     try {
-      const response: AxiosResponse<ForecastData> = await axios.get<any>
+      const response: AxiosResponse<ForecastData> = await axios.get<ForecastData>
         (
         city
           ? `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&lang=hu&appid=955163c3dd7ea09295465a4fff838911`
