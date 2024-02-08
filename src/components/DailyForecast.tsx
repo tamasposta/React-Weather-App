@@ -78,7 +78,7 @@ const DailyForecast: React.FC<{ city: string }> = ({ city }) => {
                         <img src={iconUrl} alt="weatherIcon" className="daily-forecast-img" />
                         <h3 className="daily-forecast-upper-degree">{Math.round(listItem?.main?.temp_max)}°C</h3>
                         <h4 className="daily-forecast-lower-degree">{listItem?.weather?.[0]?.description}</h4>
-                        <div className="windDiv"><img src="./src/images/wind.svg" alt="szél" className="windImg" /> <h4 className="daily-forecast-lower-degree"> &nbsp; {Math.round(listItem?.wind?.speed)} km/h</h4>
+                        <div className="windDiv"><img src="./images/wind.svg" alt="szél" className="windImg" /> <h4 className="daily-forecast-lower-degree"> &nbsp; {Math.round(listItem?.wind?.speed)} km/h</h4>
                         </div>
                       </div>
                     )
