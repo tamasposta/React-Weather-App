@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
     min-height:90vh;
     }
 
-    @media(max-width: ${({theme})  => theme.mobile}) {
+    @media(max-width: ${({theme})  => theme?.breakpoints?.medium}) {
       body {
         padding:5px;
       }

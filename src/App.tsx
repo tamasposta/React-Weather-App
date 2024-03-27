@@ -1,49 +1,16 @@
-import { useState } from "react";
 import { ThemeProvider } from "styled-components"
 import GlobalStyles from "./components/styles/Global"
-import MainWeatherData from './components/MainWeatherData';
-import DailyForecast from './components/DailyForecast';
-
-type Theme = {
-  colors: {
-    body: string;
-    blockbg: string;
-    whitetp: string;
-  };
-  border: {
-    brwhite: string;
-    brradius: string;
-  };
-  mobile: string;
-}
-
-const theme: Theme = {
-  colors: {
-    body: 'linear-gradient(#2dd6fc, #4342ca)',
-    blockbg: 'rgba(30, 50, 150, 0.6)',
-    whitetp: 'rgba(255, 255, 255, 0.2)'
-  },
-
-  border: {
-    brwhite: '2px solid white;',
-    brradius: '10px'
-  },
-
-  mobile: '1024px'
-}
+import { theme } from "./utils/themes"
+import Home from "./pages/Home"
 
 const App = () => {
-  const [city, setCity] = useState('');
 
   return (
     <ThemeProvider theme={theme}>
-      <>
         <div className='mainContainer'>
           <GlobalStyles />
-          <MainWeatherData city={city} setCity={setCity}/>
-          <DailyForecast city={city} />
+          <Home />
         </div>
-      </>
     </ThemeProvider>
   )
 }
