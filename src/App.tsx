@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-        <div className='mainContainer'> {/* ezt az 1 classname-et meg lehet hagyni */}
+        <div className='mainContainer'>
           <GlobalStyles />
           <Home />
         </div>

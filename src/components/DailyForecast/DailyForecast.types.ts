@@ -24,4 +24,6 @@ export interface ForecastData {
 
 export interface DailyForecastProps {
   city: string
+  forecastData: ForecastData | null
+  isForecastDataLoading?: boolean
 }

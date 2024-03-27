@@ -1,4 +1,4 @@
-type Theme = {
+export type Theme = {
     colors: {
       body: string
       blockbg: string
@@ -12,6 +12,10 @@ type Theme = {
       large: string
       medium: string
     }
+  }
+
+  export type ThemePropsType = {
+    theme: Theme
   }
   
   export const theme: Theme = {
