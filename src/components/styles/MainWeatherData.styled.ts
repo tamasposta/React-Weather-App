@@ -37,7 +37,7 @@ export const StyledMainWeatherData = styled.div`
     @media(max-width: ${({ theme }) => theme?.breakpoints?.medium}) {
         width: 100%;
         padding: 20px 0;
-        min-height:100%;
+        min-height:500px;
     }
 
     .cityForm {
@@ -91,11 +91,10 @@ export const SearchButton = styled.button`
     background-color: rgba(200, 200, 100, 0.6);
     transition: 0.5s ease-out;
     font-weight: 600;
-    margin-top:10px
+    cursor: pointer;
 
     &:hover {
         transform: scale(1.1);
-        cursor: pointer;
     }
 `
 
@@ -109,6 +108,7 @@ export const StyledSearchInput = styled.input`
     font-family: 'Fira Sans', sans-serif;
     font-size: 15px;
     padding:0 10px;
+    text-align: center;
 
     &:focus {
         background: ${({ theme }) => theme?.colors?.blockbg};
@@ -130,6 +130,6 @@ export const SearchInputButtonContainer = styled.div`
     width: 100%;
     right: 0;
     left: 0;
-    padding: 0 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
     gap:10px
 `
