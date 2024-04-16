@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { WeatherData } from '../components/MainWeatherData/MainWeatherData.types'
 import { apiUrl } from '../utils/apiUrl'
 import useGeolocation, { Coordinates } from './useGeolocation'
@@ -11,6 +11,13 @@ export const useHome = ({ city }:any) => {
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null)
     const [forecastData, setForecastData] = useState<ForecastData | null>(null)
     const location: { coordinates?: Coordinates }  = useGeolocation()
+
+    useEffect(() => {
+        if (location.coordinates) {
+            fetchWeatherData();
+            fetchForecastData();
+        }
+    }, [location])
 
     const fetchWeatherData = async (): Promise<void> => {
         try { setIsWeatherDataLoading(true)
