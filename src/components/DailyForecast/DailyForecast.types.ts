@@ -1,15 +1,15 @@
 type MainData = {
-  temp_max: number
-}
+  temp_max: number;
+};
 
 export type WeatherDataElement = {
   icon: string;
   description: string;
-}
+};
 
 export type WindData = {
-  speed: number
-}
+  speed: number;
+};
 
 export interface ForecastItem {
   dt_txt: string;
@@ -19,11 +19,11 @@ export interface ForecastItem {
 }
 
 export interface ForecastData {
-  list: ForecastItem[]
+  list: ForecastItem[];
 }
 
 export interface DailyForecastProps {
-  city: string
-  forecastData: ForecastData | null
-  isForecastDataLoading?: boolean
+  city: string;
+  forecastData: ForecastData | null;
+  isForecastDataLoading?: boolean;
 }

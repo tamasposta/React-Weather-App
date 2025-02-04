@@ -32,7 +32,7 @@ const GlobalStyles = createGlobalStyle`
     min-height:90vh;
     }
 
-    @media(max-width: ${({theme})  => theme?.breakpoints?.medium}) {
+    @media(max-width: ${({ theme }) => theme?.breakpoints?.medium}) {
       body {
         padding:5px;
       }
@@ -46,6 +46,6 @@ const GlobalStyles = createGlobalStyle`
         background-size:100%;
       }
     }
-`
+`;
 
-export default GlobalStyles
+export default GlobalStyles;
