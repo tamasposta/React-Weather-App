@@ -1,23 +1,30 @@
-import { ChangeEvent } from "react"
-import { SearchInputProps } from "../MainWeatherData.types"
-import { SearchButton, SearchInputButtonContainer, StyledSearchInput } from "../../styles/MainWeatherData.styled"
+import { ChangeEvent } from "react";
+import { SearchInputProps } from "../MainWeatherData.types";
+import {
+  SearchButton,
+  SearchInputButtonContainer,
+  StyledSearchInput,
+} from "../../styles/MainWeatherData.styled";
 
-const SearchInput = ({ city, setCity, fetchWeatherData, fetchForecastData }: SearchInputProps) => {
-
+const SearchInput = ({
+  city,
+  setCity,
+  fetchWeatherData,
+  fetchForecastData,
+}: SearchInputProps) => {
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCity(event.target.value)
-  }
+    setCity(event.target.value);
+  };
 
   const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault()
+    event.preventDefault();
     try {
-      await fetchWeatherData()
-      await fetchForecastData()
+      await fetchWeatherData();
+      await fetchForecastData();
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-
-  }
+  };
 
   return (
     <SearchInputButtonContainer>
@@ -29,12 +36,14 @@ const SearchInput = ({ city, setCity, fetchWeatherData, fetchForecastData }: Sea
       />
       <SearchButton
         type="button"
-        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e)}
-        >
+        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+          handleSubmit(e)
+        }
+      >
         🔍 KERESÉS
       </SearchButton>
     </SearchInputButtonContainer>
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;
